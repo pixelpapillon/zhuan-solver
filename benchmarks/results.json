@@ -1,0 +1,209 @@
+[
+  {
+    "case": "original_bad_case_1",
+    "status": "solved",
+    "steps": 32,
+    "expanded": 1882,
+    "seconds": 0.4722,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "original_bad_case_2",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.2265,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "user_first_level",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 2070,
+    "seconds": 0.5883,
+    "phase": "restarts",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_0",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.2123,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_1",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.153,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_2",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 288,
+    "seconds": 0.1834,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_3",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 1742,
+    "seconds": 0.5563,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_4",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.1818,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_5",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.1307,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_6",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 3612,
+    "seconds": 0.756,
+    "phase": "restarts",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_7",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 14695,
+    "seconds": 2.6068,
+    "phase": "restarts",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_8",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.384,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_9",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 133,
+    "seconds": 0.1562,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_10",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.1616,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_11",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.1239,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_12",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.2163,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_13",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.1214,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_14",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.2018,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_15",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 2072,
+    "seconds": 0.6128,
+    "phase": "restarts",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_16",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 1330,
+    "seconds": 0.4829,
+    "phase": "gbfs",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_17",
+    "status": "no_unambiguous_route",
+    "steps": 0,
+    "expanded": 32,
+    "seconds": 0.007,
+    "phase": "gbfs",
+    "verified": false
+  },
+  {
+    "case": "random_full_seed_18",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 3101,
+    "seconds": 0.801,
+    "phase": "restarts",
+    "verified": true
+  },
+  {
+    "case": "random_full_seed_19",
+    "status": "solved",
+    "steps": 70,
+    "expanded": 70,
+    "seconds": 0.1138,
+    "phase": "gbfs",
+    "verified": true
+  }
+]

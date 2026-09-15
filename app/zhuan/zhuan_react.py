@@ -24,17 +24,16 @@ class ZhuanReact:
         self._cache_hit_idx = 0
 
     def run_planning_search(self, start_node):
-        gbfs = GBFS(start_node)
-        path = gbfs.search()
-        gbfs.show_algorithm_stats()
-        if gbfs._stats_visited_state > 10000:
-            t = start_node.state.tiles
-            a = [[int(u) for u in x]for x in t]
-            print((a), "State.Tiles")
-            if path is not None:
-                for node in path:
-                    print(node.from_action)
-            # exit()
+        from app.zhuan.solver import solve, format_solution
+        result = solve(start_node.state.tiles)
+        if result.status != 'solved':
+            return None
+        format_solution(start_node.state.tiles, result)  # Full replay and ambiguity gate.
+        path = [start_node]
+        board = start_node.state
+        for action in result.actions:
+            board = BoardState(board.apply_move_copy(*action))
+            path.append(ZhuanNode(board, action))
         return path
 
     def react(self, result: MaybeResult):
@@ -55,19 +54,9 @@ class ZhuanReact:
                 self._cache_hit_idx = 0
             else:
                 print("路径不在缓存中")
-                self._missing_cache_wait_crt += 1
-                self._cache_hit_idx += 1
-                if self._missing_cache_wait_crt < self._missing_cache_wait_max:
-                    if self._cache_hit_idx + 1 < len(self._cache_path):
-                        action_step = self._cache_path[self._cache_hit_idx + 1].from_action
-                        print(f"  从缓存中读取路径位于 {self._cache_hit_idx} of {len(self._cache_path)}")
-                        return self.build_action(action_step)
-                    return NoAction()
-                elif self._missing_cache_wait_crt == self._missing_cache_wait_max:
-                    print("  等待 1s")
-                    time.sleep(1)
-                    return NoAction()
-                self._missing_cache_wait_crt = 0
+                # Never execute a cached action when the observed board differs.
+                self._cache_path = None
+                return NoAction()
 
         if path is None:
             path = self.run_planning_search(start_node)

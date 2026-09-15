@@ -1,0 +1,18 @@
+test_generic_search_interfaces (test_integration.CompatibilityTests.test_generic_search_interfaces) ... ok
+test_ambiguous_route_not_exported (test_integration.IntegrationTests.test_ambiguous_route_not_exported) ... ok
+test_inconsistent_search_state_rejected (test_integration.IntegrationTests.test_inconsistent_search_state_rejected) ... ok
+test_original_fixtures (test_integration.IntegrationTests.test_original_fixtures) ... ok
+test_tampered_route_rejected (test_integration.IntegrationTests.test_tampered_route_rejected) ... ok
+test_two_transition_engines (test_integration.IntegrationTests.test_two_transition_engines) ... ok
+test_restarts_solve_user_screenshot (test_integration.SavedScreenshotTests.test_restarts_solve_user_screenshot) ... ok
+test_user_screenshot_saved_solution (test_integration.SavedScreenshotTests.test_user_screenshot_saved_solution) ... ok
+test_all_match_directions (test_solver.SolverTests.test_all_match_directions) ... ok
+test_exhaustive_small_boards (test_solver.SolverTests.test_exhaustive_small_boards) ... ok
+test_invalid (test_solver.SolverTests.test_invalid) ... ok
+test_push_and_collision (test_solver.SolverTests.test_push_and_collision) ... ok
+test_statuses_and_fallback (test_solver.SolverTests.test_statuses_and_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.963s
+
+OK

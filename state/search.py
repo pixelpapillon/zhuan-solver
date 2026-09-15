@@ -1,4 +1,5 @@
 import heapq
+import itertools
 import time
 from collections import deque
 
@@ -20,7 +21,7 @@ class BFS:
         """
         queue = deque([self.start_node])
         visited = set()
-        parent_map = {self.start_node: None}
+        parent_map = {self.start_node: (None, None)}
 
         while queue:
             current_node = queue.popleft()
@@ -34,9 +35,9 @@ class BFS:
             visited.add(current_node)
             neighbors = current_node.get_neighbors()
 
-            for neighbor in neighbors:
+            for neighbor, action in neighbors:
                 if neighbor not in visited and neighbor not in parent_map:
-                    parent_map[neighbor] = current_node
+                    parent_map[neighbor] = (current_node, action)
                     queue.append(neighbor)
 
         return None
@@ -53,7 +54,9 @@ class BFS:
         current_node = goal_node
         while current_node is not None:
             path.append(current_node)
-            current_node = parent_map[current_node]
+            previous, action = parent_map[current_node]
+            current_node.from_action = action
+            current_node = previous
         path.reverse()
         return path
 
@@ -74,12 +77,13 @@ class GBFS:
         :return: 如果找到目标节点，返回路径；如果未找到，返回 None
         """
         tic = time.time()
-        priority_queue = [(self.start_node.get_priority(), self.start_node)]
+        serial = itertools.count()
+        priority_queue = [(self.start_node.get_priority(), next(serial), self.start_node)]
         visited = set()
         parent_map = {self.start_node: (None, None)}
 
         while priority_queue:
-            _priority, current_node = heapq.heappop(priority_queue)
+            _priority, _, current_node = heapq.heappop(priority_queue)
 
             if current_node.is_goal():
                 self._stats_visited_state = len(visited)
@@ -96,7 +100,7 @@ class GBFS:
             for neighbor, action in neighbors_with_actions:
                 if neighbor not in visited and neighbor not in parent_map:
                     parent_map[neighbor] = (current_node, action)
-                    heapq.heappush(priority_queue, (neighbor.get_priority(), neighbor))
+                    heapq.heappush(priority_queue, (neighbor.get_priority(), next(serial), neighbor))
 
         self._stats_visited_state = len(visited)
         self._stats_num_in_queue = len(priority_queue)

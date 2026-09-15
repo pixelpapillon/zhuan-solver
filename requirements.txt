@@ -1,3 +1,1 @@
-ultralytics
-pyautogui
-pywin32
+-r requirements-screenshot.txt

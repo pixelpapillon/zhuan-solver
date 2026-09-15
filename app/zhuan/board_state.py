@@ -44,7 +44,7 @@ class BoardState:
                 # ptn = self.tiles[row_idx][col_start]
 
                 # search pattern in _projected_tiles at (row_idx, col_end)
-                if dir_key := self.check_single_move((row_idx, col_start), (row_idx, col_end), True):
+                for dir_key in self.check_single_moves((row_idx, col_start), (row_idx, col_end), True):
                     moves.append(((row_idx, col_start), (row_idx, col_end), dir_key))
 
         reflected_tiles = tuple(zip(*self.tiles))
@@ -56,7 +56,7 @@ class BoardState:
                 # ptn = reflected_tiles[col_idx][row_start]
 
                 # search pattern in _projected_tiles at (row_end, col_idx)
-                if dir_key := self.check_single_move((row_start, col_idx), (row_end, col_idx), False):
+                for dir_key in self.check_single_moves((row_start, col_idx), (row_end, col_idx), False):
                     moves.append(((row_start, col_idx), (row_end, col_idx), dir_key))
     
         self._scan_moves = scan_moves
@@ -66,6 +66,19 @@ class BoardState:
         """
         根据给定的移动，返回执行后的棋盘状态。
         
+        :param start: 移动的起始位置
+        :param end: 移动的目标位置
+        :param search_dir_key: 移动的方向字符串
+        :return: 更新后的棋盘状态
+        """
+        from app.zhuan.verifier import replay_step
+        result, _ = replay_step(self.tiles, (start, end, search_dir_key))
+        return [list(row) for row in result]
+
+    def _apply_generated_move_copy(self, start: tuple, end: tuple, search_dir_key: str) -> list:
+        """
+        根据给定的移动，返回执行后的棋盘状态。
+
         :param start: 移动的起始位置
         :param end: 移动的目标位置
         :param search_dir_key: 移动的方向字符串
@@ -153,7 +166,7 @@ class BoardState:
 
         return tiles_copy
 
-    def check_single_move(self, start: tuple, end: tuple, horizontal: bool):
+    def check_single_moves(self, start: tuple, end: tuple, horizontal: bool):
         """
         检查给定的移动能否消除棋盘棋子
         
@@ -166,17 +179,20 @@ class BoardState:
         row_end, col_end = end
         ptn = self.tiles[row_start][col_start]
         if ptn == 0:
-            return False
+            return []
+        if self._projected_tiles is None:
+            self._projected_tiles = self._compute_projected_board()
         if horizontal:
             keys = ["up", "down"]  # 水平移动，则只检测垂直方向，下同
         else:
             keys = ["left", "right"]
-        for key in keys:
-            pt = self._projected_tiles[key]
-            if ptn == pt[row_end][col_end]:
-                a = 1
-                return key
-        return False
+        return [key for key in keys
+                if ptn == self._projected_tiles[key][row_end][col_end]]
+
+    def check_single_move(self, start, end, horizontal):
+        """Compatibility helper; search uses the plural method to retain all branches."""
+        matches = self.check_single_moves(start, end, horizontal)
+        return matches[0] if matches else False
 
 
     def _compute_projected_board(self):
